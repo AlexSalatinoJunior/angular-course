@@ -1,0 +1,25 @@
+<div
+  class="container"
+  fxLayout="row"
+  fxLayout.sm="column"
+  fxLayout.xs="column"
+  fxLayoutAlign.gt-md="space-around center"
+  fxLayoutGap="10px"
+  fxLayoutGap.xs="0"
+>
+  <div fxFlex="40" *ngIf="dish">
+    <mat-card>
+      <p>Name: {{ dish.name | uppercase }}</p>
+      <img height="400em" src="{{ dish.image }}" alt="{{ dish.name }}" />
+      <p>Description: {{ dish.description }}</p>
+    </mat-card>
+  </div>
+
+  <div fxFlex="40" *ngIf="dish">
+    <mat-card *ngFor="let aval of dish.comments">
+      <p>{{ aval.comment }}</p>
+      <p>{{ aval.rating }}</p>
+      <p>--{{ aval.author }} {{ aval.date | date }}</p>
+    </mat-card>
+  </div>
+</div>
