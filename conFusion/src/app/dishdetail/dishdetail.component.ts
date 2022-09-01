@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Dish } from '../shared/dish';
 
 const DISH = {
   id: '0',
@@ -52,6 +53,7 @@ const DISH = {
   styleUrls: ['./dishdetail.component.scss'],
 })
 export class DishdetailComponent {
-  dish = DISH;
+  @Input()
+  dish: Dish;
   constructor() {}
 }
