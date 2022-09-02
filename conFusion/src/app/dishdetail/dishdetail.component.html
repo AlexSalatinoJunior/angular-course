@@ -1,18 +1,17 @@
 <div
   class="container"
-  fxLayout="row"
+  fxLayout="row wrap"
   fxLayout.sm="column"
   fxLayout.xs="column"
   fxLayoutAlign.gt-md="space-around center"
   fxLayoutGap="10px"
   fxLayoutGap.xs="0"
 >
-  <div fxFlex="40" *ngIf="dish">
-    <mat-card>
-      <p>Name: {{ dish.name | uppercase }}</p>
-      <img height="400em" src="{{ dish.image }}" alt="{{ dish.name }}" />
-      <p>Description: {{ dish.description }}</p>
-    </mat-card>
+  <div fxFlex="100">
+    <div>
+      <h3>{{ dish.name | uppercase }}</h3>
+      <hr />
+    </div>
   </div>
 
   <div fxFlex="40" *ngIf="dish">
@@ -20,6 +19,9 @@
       <p>{{ aval.comment }}</p>
       <p>{{ aval.rating }}</p>
       <p>--{{ aval.author }} {{ aval.date | date }}</p>
+      <mat-card-actions>
+        <button mat-button (click)="goBack()">BACK</button>
+      </mat-card-actions>
     </mat-card>
   </div>
 </div>
