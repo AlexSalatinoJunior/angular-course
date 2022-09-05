@@ -19,6 +19,16 @@ import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { LeaderService } from './services/leaders.service';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -30,6 +40,7 @@ import { LeaderService } from './services/leaders.service';
     AboutComponent,
     ContactComponent,
     HomeComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +52,17 @@ import { LeaderService } from './services/leaders.service';
     MatGridListModule,
     MatCardModule,
     MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    FormsModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
   ],
+  entryComponents: [LoginComponent],
   providers: [DishService, LeaderService],
   bootstrap: [AppComponent],
 })

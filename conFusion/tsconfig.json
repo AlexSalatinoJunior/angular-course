@@ -19,7 +19,8 @@
     "target": "es2020",
     "module": "ESNext",
     "strictPropertyInitialization": false,
-    "lib": ["es2020", "dom"]
+    "lib": ["es2020", "dom"],
+    "noPropertyAccessFromIndexSignature": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
