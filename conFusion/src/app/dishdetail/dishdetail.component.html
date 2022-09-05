@@ -41,8 +41,15 @@
       </mat-card-actions>
     </mat-card>
     <mat-card>
-      <div class="form-size">
+      <div class="form-size" class="matFormFieldUnderline">
         <h3>Send us your comment about this dish</h3>
+        <mat-card>
+          <p>{{ commentsForm.value.message }}</p>
+          <p>{{ commentsForm.value.slider }}</p>
+          <p>
+            --{{ commentsForm.value.name }} {{ commentsForm.value.date | date }}
+          </p>
+        </mat-card>
         <p>{{ commentsForm.value | json }} {{ commentsForm.status | json }}</p>
         <form
           novalidate
@@ -66,7 +73,14 @@
           </p>
           <p>
             <mat-form-field class="half-width">
-              <mat-slider min="1" max="5" step="1" value="1"></mat-slider>
+              <mat-slider
+                min="1"
+                max="5"
+                step="1"
+                value="1"
+                thumbLabel
+                tickInterval="auto"
+              ></mat-slider>
             </mat-form-field>
           </p>
           <p>

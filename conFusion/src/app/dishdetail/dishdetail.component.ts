@@ -61,7 +61,7 @@ export class DishdetailComponent implements OnInit {
     console.log(this.comment);
     this.commentsForm.reset({
       name: '',
-      slider: 0,
+      slider: 1,
       message: '',
     });
     this.commentsFormDirective.resetForm();
