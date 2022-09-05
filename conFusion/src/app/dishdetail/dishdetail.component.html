@@ -40,6 +40,58 @@
         </button>
       </mat-card-actions>
     </mat-card>
+    <mat-card>
+      <div class="form-size">
+        <h3>Send us your comment about this dish</h3>
+        <p>{{ commentsForm.value | json }} {{ commentsForm.status | json }}</p>
+        <form
+          novalidate
+          [formGroup]="commentsForm"
+          #fform="ngForm"
+          (ngSubmit)="onSubmit()"
+        >
+          <p>
+            <mat-form-field class="half-width">
+              <input
+                matInput
+                formControlName="name"
+                placeholder="Name"
+                type="text"
+                required
+              />
+              <mat-error *ngIf="formErrors.name">{{
+                formErrors.name
+              }}</mat-error>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="half-width">
+              <mat-slider min="1" max="5" step="1" value="1"></mat-slider>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field class="full-width">
+              <textarea
+                matInput
+                formControlName="message"
+                placeholder="Your Feedback"
+                rows="12"
+              ></textarea>
+              <mat-error *ngIf="formErrors.message">{{
+                formErrors.message
+              }}</mat-error>
+            </mat-form-field>
+            <button
+              type="submit"
+              mat-button
+              class="background-primary text-floral-white"
+            >
+              Submit
+            </button>
+          </p>
+        </form>
+      </div>
+    </mat-card>
   </div>
   <div [hidden]="dish">
     <mat-spinner></mat-spinner>
