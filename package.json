@@ -17,5 +17,8 @@
   "homepage": "https://github.com/AlexSalatinoJunior/angular-course#readme",
   "devDependencies": {
     "lite-server": "^2.6.1"
+  },
+  "dependencies": {
+    "@angular/material": "^14.2.0"
   }
 }
