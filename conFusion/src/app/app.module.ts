@@ -32,7 +32,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { baseURL } from './shared/baseurl';
-import { ProcessHTTPMsgService } from './services/process-httpmsg.service'
+import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
+import { HighlightDirective } from './directives/highlight.directive'
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { ProcessHTTPMsgService } from './services/process-httpmsg.service'
     ContactComponent,
     HomeComponent,
     LoginComponent,
+    HighlightDirective,
   ],
   imports: [
     BrowserModule,
