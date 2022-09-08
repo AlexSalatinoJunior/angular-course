@@ -20,6 +20,7 @@ export class DishdetailComponent implements OnInit {
   prev: string;
   next: string;
   comment: Comment;
+  errMess: string;
 
   createForm() {
     this.commentsForm = this.fb.group({
@@ -128,7 +129,9 @@ export class DishdetailComponent implements OnInit {
   ngOnInit() {
     this.dishservice
       .getDishIds()
-      .subscribe((dishIds) => (this.dishIds = dishIds));
+      .subscribe(dishIds => this.dishIds = dishIds,
+      errmess => this.errMess = <any>errmess
+      );
     this.route.params
       .pipe(
         switchMap((params: Params) => this.dishservice.getDish(params['id']))

@@ -21,7 +21,7 @@ import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { LeaderService } from './services/leaders.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInput, MatInputModule } from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
@@ -32,6 +32,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { baseURL } from './shared/baseurl';
+import { ProcessHTTPMsgService } from './services/process-httpmsg.service'
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { baseURL } from './shared/baseurl';
   providers: [
     DishService,
     LeaderService,
-    { provide: 'BaseURL', useValue: baseURL },
+    ProcessHTTPMsgService,
+    { provide: 'BaseURL', useValue: baseURL }
   ],
   bootstrap: [AppComponent],
 })
