@@ -21,6 +21,7 @@ export class DishdetailComponent implements OnInit {
   next: string;
   comment: Comment;
   errMess: string;
+  dishcopy: Dish;
 
   createForm() {
     this.commentsForm = this.fb.group({
@@ -67,7 +68,12 @@ export class DishdetailComponent implements OnInit {
     data.toISOString();
     this.commentsForm.value.date = data;
     this.comment = this.commentsForm.value;
-    this.dishservice.addComment(this.comment, this.dish.id);
+    this.dishcopy.comments.push(this.comment);
+    this.dishservice.putDish(this.dishcopy)
+      .subscribe(dish => {
+        this.dish = dish; this.dishcopy = dish;
+      },
+      errmess => { this.dish = null; this.dishcopy = null; this.errMess = <any>errmess; });
     this.commentsForm.reset();
     this.commentsFormDirective.resetForm({
       author: '',
@@ -132,13 +138,9 @@ export class DishdetailComponent implements OnInit {
       .subscribe(dishIds => this.dishIds = dishIds,
       errmess => this.errMess = <any>errmess
       );
-    this.route.params
-      .pipe(
-        switchMap((params: Params) => this.dishservice.getDish(params['id']))
-      )
-      .subscribe((dish) => {
-        this.dish = dish;
-        this.setPrevNext(dish.id);
-      });
+      this.route.params
+      .pipe(switchMap((params: Params) => this.dishservice.getDish(params['id'])))
+      .subscribe(dish => { this.dish = dish; this.dishcopy = dish; this.setPrevNext(dish.id); },
+        errmess => this.errMess = <any>errmess );;
   }
 }
