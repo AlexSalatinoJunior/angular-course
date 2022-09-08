@@ -30,8 +30,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { enableProdMode } from '@angular/core';
-enableProdMode();
+import { HttpClientModule } from '@angular/common/http';
+import { baseURL } from './shared/baseurl';
 
 @NgModule({
   declarations: [
@@ -65,9 +65,14 @@ enableProdMode();
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     MatSliderModule,
+    HttpClientModule,
   ],
   entryComponents: [LoginComponent],
-  providers: [DishService, LeaderService],
+  providers: [
+    DishService,
+    LeaderService,
+    { provide: 'BaseURL', useValue: baseURL },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
