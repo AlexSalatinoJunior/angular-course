@@ -74,13 +74,17 @@
         <p>{{ leader.name }}</p>
         <p>{{ leader.designation }}</p>
         <p>{{ leader.abbr }}</p>
-        <img src="{{ leader.image }}" />
+        <img src="{{ BaseURL + leader.image }}" />
         <p>{{ leader.description }}</p>
       </mat-card>
     </mat-list>
   </div>
-  <div [hidden]="leaders">
+  <div [hidden]="leaders || errMess">
     <mat-spinner></mat-spinner>
     <h4>Loading . . . Please Wait</h4>
+  </div>
+  <div fxFlex *ngIf="errMess">
+    <h2>Error</h2>
+    <h4>{{errMess}}</h4>
   </div>
 </div>
