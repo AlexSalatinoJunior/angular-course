@@ -69,7 +69,7 @@
 
   <div fxFlex *ngIf="leaders">
     <h2>Corporate Leadership</h2>
-    <mat-list *ngFor="let leader of leaders">
+    <mat-list *ngFor="let leader of leaders" [@expand]>
       <mat-card>
         <p>{{ leader.name }}</p>
         <p>{{ leader.designation }}</p>

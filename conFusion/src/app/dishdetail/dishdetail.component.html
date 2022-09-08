@@ -37,7 +37,7 @@
 
   <div fxFlex="40" *ngIf="dish" [@visibility]="visibility">
     <mat-card>
-      <mat-list *ngFor="let aval of dish.comments">
+      <mat-list *ngFor="let aval of dish.comments" [@expand]>
         <p>{{ aval.comment }}</p>
         <p>{{ aval.rating }}</p>
         <p>--{{ aval.author }} {{ aval.date | date }}</p>
