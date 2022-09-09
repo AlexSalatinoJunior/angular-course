@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { flyInOut } from '../animations/app.animation';
+import { expand, flyInOut } from '../animations/app.animation';
+import { FeedbackService } from '../services/feedback.service';
 import { Feedback, ContactType } from '../shared/feedback';
 
 @Component({
@@ -13,14 +14,21 @@ import { Feedback, ContactType } from '../shared/feedback';
     'style': 'display: block;'
     },
     animations: [
-      flyInOut()
+      flyInOut(),
+      expand()
     ]
 })
 export class ContactComponent implements OnInit {
   @ViewChild('fform') feedbackFormDirective;
+  feedbacks: Feedback[]
   feedbackForm: FormGroup;
   feedback: Feedback;
   contactType = ContactType;
+  errMess: string;
+  id: number
+  feedbackCopy: Feedback
+  loading = false
+  default = true
 
   createForm() {
     this.feedbackForm = this.fb.group({
@@ -104,8 +112,13 @@ export class ContactComponent implements OnInit {
   };
 
   onSubmit() {
+    this.loading = true
+    this.default = false
     this.feedback = this.feedbackForm.value;
-    console.log(this.feedback);
+    this.feedbackService.putFeedback(this.feedback)
+      .subscribe(feedback => this.feedback = feedback,
+      errmess => { this.feedback = null; this.errMess = <any>errmess; });
+    this.getLastFeedback()
     this.feedbackForm.reset({
       firstname: '',
       lastname: '',
@@ -116,8 +129,27 @@ export class ContactComponent implements OnInit {
       message: '',
     });
     this.feedbackFormDirective.resetForm();
+    if(this.feedbackCopy != null){
+    }
   }
-  constructor(private fb: FormBuilder) {
+
+  getLastFeedback(){
+    this.feedbackService.getFeedbackIds().subscribe(ids => {
+      this.id = ids.length;
+      let lastId = this.id.toString();
+      this.feedbackService.getFeedback(lastId).subscribe(feedback => {
+        this.feedbackCopy = feedback;
+        this.loading = false;
+        setTimeout(() => this.default = true, 5000)},
+        errmess => this.errMess = <any>errmess)
+    },
+      errmess => this.errMess = <any>errmess)
+  }
+
+  constructor(private fb: FormBuilder,
+    private feedbackService: FeedbackService,
+    @Inject('BaseURL') public BaseURL
+    ) {
     this.createForm();
   }
 

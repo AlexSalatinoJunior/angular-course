@@ -34,7 +34,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { baseURL } from './shared/baseurl';
 import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
 import { HighlightDirective } from './directives/highlight.directive'
-
+import { enableProdMode } from '@angular/core';
+enableProdMode()
 @NgModule({
   declarations: [
     AppComponent,

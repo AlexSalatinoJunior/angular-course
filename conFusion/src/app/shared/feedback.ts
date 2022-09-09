@@ -6,6 +6,7 @@ export class Feedback {
   agree: boolean;
   contacttype: string;
   message: string;
+  id: string;
 }
 
 export const ContactType = ['None', 'Tel', 'Email'];
